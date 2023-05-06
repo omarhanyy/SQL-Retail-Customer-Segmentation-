@@ -10,6 +10,17 @@ In this case study using the OnlineRetail dataset, I explored the dataset and su
 - **Month-over-Month Sales**
 - **Sales Decline root cause analysis**
 
+#### Creating a CTE 
+  ```
+with sales_data as (
+select INVOICE,STOCKCODE, QUANTITY, INVOICEDATE, PRICE,CUSTOMER_ID, COUNTRY,
+         TO_DATE(INVOICEDATE, 'MM/DD/YYYY HH24:MI') as INVOICE_DATE,
+         EXTRACT(YEAR FROM TO_DATE(INVOICEDATE, 'MM/DD/YYYY HH24:MI')) AS year,
+         TO_CHAR(TO_DATE(INVOICEDATE, 'MM/DD/YYYY HH24:MI'), 'Q') as quarter,
+         EXTRACT(month FROM TO_DATE(INVOICEDATE, 'MM/DD/YYYY HH24:MI')) as month
+from tableRetail
+)
+  ```
 
  #### Can we compare the sales of 2010 to 2011?
   
